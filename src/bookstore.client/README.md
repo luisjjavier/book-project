@@ -1,12 +1,26 @@
-# React + Vite
+# BookStore.Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React application for browsing and managing books, designed to work seamlessly with the [BookStore.Server](../BookStore.Server) .NET 9 Web API.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Search and filter books by author, ISBN, and ownership status
+- Paginated book listings
+- Responsive UI with React and modern CSS
+- API integration with BookStore.Server
+- TypeScript support (if applicable)
+- Component-based architecture
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+bookstore.client/ 
+	??? public/                # Static assets 
+	??? src/ 
+	?   ??? api/               # API service calls
+	?   ??? components/        # Reusable React components 
+	?   ??? pages/             # Page-level components/views 
+	?   ??? App.jsx/tsx        # Main app component 
+	?   ??? index.jsx/tsx      # Entry point 
+	?   ??? ...                # Other utilities, hooks, etc. 
+	??? package.json           # Project metadata and dependencies 
+	??? README.md              # Project documentation 

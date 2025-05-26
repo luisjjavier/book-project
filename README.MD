@@ -17,7 +17,8 @@ Supports searching, filtering, and paginating books, with a clean architecture a
 
 - [.NET 9 SDK](https://dotnet.microsoft.com/download)
 - [Visual Studio 2022](https://visualstudio.microsoft.com/) or VS Code
-- [React]
+- [React](https://es.react.dev/)
+- [NodeJS](https://nodejs.org/en)
 ### Setup
 
 1. **[Clone the repository:](https://github.com/luisjjavier/book-project.git)**
@@ -30,6 +31,13 @@ Supports searching, filtering, and paginating books, with a clean architecture a
 4. **Run the application:**
    1. dotnet run --project BookStore.Server
    2. the app will be available https://localhost:61101/
+### Frontend
+- [React 18](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [MUI (Material UI)](https://mui.com/)
+- [Axios](https://axios-http.com/)
+
 ### API Usage
 
 #### Search Books
@@ -51,5 +59,12 @@ Unit tests are located in the `tests/BookStore.Server.Test` project.
 
 To run tests:
 dotnet test
-### Project Structure
-BookStore.Server/ ├── Controllers/         # API controllers ├── DbContexts/          # EF Core DbContext and configurations ├── Models/              # Entity and DTO classes ├── Services/            # Business logic and service interfaces ├── Program.cs           # Application entry point tests/ └── BookStore.Server.Test/ # Unit tests
+### Backend-Project Structure
+BookStore.Server/ 
+    ├── Controllers/         # API controllers 
+    ├── DbContexts/          # EF Core DbContext and configurations 
+    ├── Models/              # Entity and DTO classes 
+    ├── Services/            # Business logic and service interfaces 
+    ├── Program.cs           # Application entry point 
+    tests/ 
+        └── BookStore.Server.Test/ # Unit tests
