@@ -1,4 +1,5 @@
-﻿using BookStore.Server.Services.Contracts;
+﻿using BookStore.Server.Dtos.BookStore.Server.Models;
+using BookStore.Server.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Server.Controllers
@@ -41,7 +42,20 @@ namespace BookStore.Server.Controllers
             [FromQuery] int pageSize = 10)
         {
             var (books, totalCount) = await _bookService.SearchBooksAsync(author, isbn, status, page, pageSize);
-            return Ok(new { Data = books, TotalCount = totalCount });
+
+            var booksList = books.Select(b => new BookDto()
+            {
+                FirstName = b.FirstName,
+                LastName = b.LastName,
+                Isbn = b.Isbn,
+                Title = b.Title,
+                Type = b.Type,
+                Category = b.Category,
+                AvailableCopies = $"{b.CopiesInUse}/{b.TotalCopies}",
+                Id = b.Id.ToString(),
+                OwnershipStatus = b.OwnershipStatus.ToString(),
+            });
+            return Ok(new { Data = booksList, TotalCount = totalCount });
         }
     }
 }
