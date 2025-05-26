@@ -1,4 +1,8 @@
 
+using BookStore.Server.DbContexts;
+using BookStore.Server.Services;
+using BookStore.Server.Services.Contracts;
+
 namespace BookStore.Server;
 
 public class Program
@@ -13,7 +17,8 @@ public class Program
         builder.Services.AddControllers();
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
-
+        builder.Services.AddLibraryDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
+        builder.Services.AddScoped<IBookService,BookService>();
         var app = builder.Build();
 
         app.MapDefaultEndpoints();
