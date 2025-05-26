@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Box,
     Button,
@@ -16,7 +16,8 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-    Paper
+    Paper,
+    Pagination
 } from '@mui/material';
 import axios from 'axios';
 
@@ -37,15 +38,29 @@ const App: React.FC = () => {
     const [searchBy, setSearchBy] = useState<string>('');
     const [searchValue, setSearchValue] = useState<string>('');
     const [books, setBooks] = useState<Book[]>([]);
+    const [totalCount, setTotalCount] = useState<number>(0);
+    const [page, setPage] = useState<number>(1);
+    const pageSize = 5;
 
-    const handleSearch = async () => {
-        const params: any = { page: 1, pageSize: 10 };
+    const fetchBooks = async (page: number) => {
+        const params: any = { page, pageSize };
         if (searchBy === 'author') params.author = searchValue;
         else if (searchBy === 'isbn') params.isbn = searchValue;
         else if (searchBy === 'status') params.status = searchValue;
 
         const res = await axios.get<{ data: Book[]; totalCount: number }>('api/books/search', { params });
         setBooks(res.data.data);
+        setTotalCount(res.data.totalCount);
+    };
+
+    const handleSearch = () => {
+        setPage(1);
+        fetchBooks(1);
+    };
+
+    const handlePageChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+        setPage(value);
+        fetchBooks(value);
     };
 
     return (
@@ -111,6 +126,17 @@ const App: React.FC = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
+
+                {totalCount > pageSize && (
+                    <Box mt={3} display="flex" justifyContent="center">
+                        <Pagination
+                            count={Math.ceil(totalCount / pageSize)}
+                            page={page}
+                            onChange={handlePageChange}
+                            color="primary"
+                        />
+                    </Box>
+                )}
             </Box>
         </Container>
     );
