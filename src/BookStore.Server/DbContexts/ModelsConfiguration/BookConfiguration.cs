@@ -72,6 +72,14 @@ namespace BookStore.Server.DbContexts.ModelsConfiguration
                 .HasConversion<string>()
                 .HasMaxLength(100)
                 .HasColumnType("varchar(100)");
+
+            // TotalCopies and CopiesInUse property configuration
+            builder.Property(b => b.TotalCopies)
+                .HasColumnName("total_copies");
+
+            // CopiesInUse property configuration
+            builder.Property(b => b.CopiesInUse)
+                .HasColumnName("copies_in_use");
         }
     }
 }
